@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Fataliti // Reifshneider
+        </title>
+
+        <style>
+            img.ava {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 15%;
+                border-radius: 50%;
+                border: solid 3px;
+            }
+
+            img.page {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                
+            }
+
+            .column {
+                float: left;
+                padding: 5px;
+            }
+
+            .tab {
+                align-items: center;
+                justify-content: center;
+                display: flex;
+            }
+
+            .imglink {
+                width: 50px;
+                filter: none;
+            }
+
+            .overed {
+                width: 50px;
+                filter: invert(68%) sepia(33%) saturate(1274%) hue-rotate(168deg) brightness(108%) contrast(102%);
+            }
+
+            @font-face {
+                font-family: "myFont" ;
+                src: url("Poppins-ExtraLight.ttf" );
+            }
+
+            .name {
+                font-family: "myFont";
+                font-size: 32px;
+            }
+       
+        </style>
+        <script src="app.js"></script>
+        <link rel="shortcut icon" type="image/x-icon" href="megu.png" />
+    </head>
+    <body>
+        <div style="margin-top: 80px" id="dvd">
+            <img src="pic.png" alt="avatar image" class="ava">
+            <h1 style="text-align: center;" class="name"> 
+                Fataliti // Reifshneider <br> <span style="font-size: 20px;">CRINGE GAME DEVELOPER</span> 
+            </h1>
+            <div class = "tab">
+                <div class = "column">
+                    <a href="https://vk.com/fatal_gd" target="_blank">
+                        <img src="vk.svg" alt="" class="imglink">
+                    </a>
+                </div>
+                <div class = "column">
+                    <a href="https://github.com/fataliti" target="_blank">
+                        <img src="git.svg" alt="" class="imglink" >
+                    </a>
+                </div>
+                <div class = "column">
+                    <a href="https://fataliti.itch.io/" target="_blank">
+                        <img src="itch.svg" alt="" class="imglink" id = "tst">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
