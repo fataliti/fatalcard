@@ -100,6 +100,29 @@ class Main {
                 );
             }
 
+            document.getElementById('mania').onclick = function () { setDesc(
+                'RHYTHM MANIA: MUSIC GAME',
+                'A rhythm game for anroid with 10 000+ installs and online highscore tables',
+                ['maniagif.gif'],
+                'https://play.google.com/store/apps/details?id=com.fataliti.rhythm&hl=ru&gl=US'
+                );
+            }
+
+            document.getElementById('direct').onclick = function () { setDesc(
+                'FATALNY DIRECT',
+                'Standalone osu! beatmap downloader with Tillerino and PPaddict integration',
+                ['direct.jpg'],
+                'https://fataliti.itch.io/fatalny-direct'
+                );
+            }
+            document.getElementById('katana').onclick = function () { setDesc(
+                'KATANA REVERS',
+                'A small game for gamejam with time manipulations',
+                ['katana.gif'],
+                'https://fataliti.itch.io/katana-revers'
+                );
+            }
+
         }
     }
 

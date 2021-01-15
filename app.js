@@ -88,6 +88,15 @@ Main.main = function() {
 		window.document.getElementById("space").onclick = function() {
 			setDesc("DEEP SPACE SHOOTER","The first game of mine which was published on Steam",["space1.jpg","space2.jpg"],"https://store.steampowered.com/app/972280/Deep_Space_Shooter/");
 		};
+		window.document.getElementById("mania").onclick = function() {
+			setDesc("RHYTHM MANIA: MUSIC GAME","A rhythm game for anroid with 10 000+ installs and online highscore tables",["maniagif.gif"],"https://play.google.com/store/apps/details?id=com.fataliti.rhythm&hl=ru&gl=US");
+		};
+		window.document.getElementById("direct").onclick = function() {
+			setDesc("FATALNY DIRECT","Standalone osu! beatmap downloader with Tillerino and PPaddict integration",["direct.jpg"],"https://fataliti.itch.io/fatalny-direct");
+		};
+		window.document.getElementById("katana").onclick = function() {
+			setDesc("KATANA REVERS","A small game for gamejam with time manipulations",["katana.gif"],"https://fataliti.itch.io/katana-revers");
+		};
 	};
 };
 var haxe_Timer = function(time_ms) {
