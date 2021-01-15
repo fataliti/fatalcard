@@ -117,7 +117,7 @@ class Main {
             }
             document.getElementById('katana').onclick = function () { setDesc(
                 'KATANA REVERS',
-                'A small game for gamejam with time manipulations',
+                'A small game for a gamejam with time manipulations',
                 ['katana.gif'],
                 'https://fataliti.itch.io/katana-revers'
                 );

@@ -95,7 +95,7 @@ Main.main = function() {
 			setDesc("FATALNY DIRECT","Standalone osu! beatmap downloader with Tillerino and PPaddict integration",["direct.jpg"],"https://fataliti.itch.io/fatalny-direct");
 		};
 		window.document.getElementById("katana").onclick = function() {
-			setDesc("KATANA REVERS","A small game for gamejam with time manipulations",["katana.gif"],"https://fataliti.itch.io/katana-revers");
+			setDesc("KATANA REVERS","A small game for a gamejam with time manipulations",["katana.gif"],"https://fataliti.itch.io/katana-revers");
 		};
 	};
 };
