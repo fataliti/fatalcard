@@ -123,6 +123,14 @@ class Main {
                 );
             }
 
+            document.getElementById('kobeni').onclick = function () { setDesc(
+                'CHAINSAW DANCE',
+                'A small rhythm fan game about dancing Kobeni',
+                ['kobeni1.gif', 'kobeni2.gif'],
+                'https://benedique.itch.io/chainsaw-dance'
+                );
+            }
+
         }
     }
 
