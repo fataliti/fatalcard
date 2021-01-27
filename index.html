@@ -16,21 +16,6 @@
         <meta property="og:image:width" content="128">
         <meta property="og:image:height" content="128">
         <style>
-            img.ava {
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-                width: 280px;
-                border-radius: 50%;
-                border: solid 3px;
-            }
-
-            img.page {
-                display: block;
-                margin-left: auto;
-                margin-right: auto;
-                
-            }
 
             .column {
                 float: left;
@@ -72,6 +57,7 @@
             .projicoact {
                 border-radius: 50%;
                 width: 32px;
+                cursor: pointer;
             }
 
             .screens {
@@ -82,23 +68,23 @@
        
         </style>
         <script src="app.js"></script>
-
         <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-GYGH4NNP87"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-GYGH4NNP87"></script> 
         <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'G-GYGH4NNP87');
         </script>
-
         <link rel="shortcut icon" type="image/x-icon" href="megu.png" />
     </head>
     <body>
-        <p class ="name" style="position: absolute;top: 20px; left: 10px; font-size: 14px; "> <b> CONTACTS <br>Discord:  Fataliti // Reifshneider#3923<br>Telegram: @fatalitiq<br>Email: fataliti22@gmail.com</b></p>
-        <div style="margin-top: 40px">
-            <img src="pic.png" alt="avatar image" class="ava">
+        <div style="display: flex;">
+        <div style="margin: 40px; width: 500px ">
+            <div style="display: flex;">
+                <img src="pic.png" alt="avatar image" style=" border-radius: 50%; border: solid 3px; margin: auto; width: 250px;">
+            </div>
+            
             <h1 style="text-align: center;" class="name"> 
                 Fataliti // Reifshneider <br> <span style="font-size: 20px;">CRINGE GAME DEVELOPER</span> 
             </h1>
@@ -129,48 +115,55 @@
                     </a>
                 </div>
             </div>
-            <h1 style="text-align: center;" class="name">MY WORKS</h1>
-            <div class="tab">
-                <div class="column">
-                    <a  class = "proj" id="direct">
-                        <img src="dirico.png" alt="" class="projico" >
-                    </a>
-                </div>
-                <div class="column">
-                    <a  class = "proj" id="sentinel">
-                        <img src="tss.jpg" alt="" class="projico" >
-                    </a>
-                </div>
-                <div class="column">
-                    <a   class = "proj" id="swarmites">
-                        <img src="tsss.jpg" alt="" class="projico" >
-                    </a>
-                </div>
-                <div class="column">
-                    <a  class = "proj" id="space">
-                        <img src="dss.jpg" alt="" class="projico" >
-                    </a>
-                </div>
-                <div class="column">
-                    <a  class = "proj" id="mania">
-                        <img src="mania.webp" alt="" class="projico" >
-                    </a>
-                </div>
-                <div class="column">
-                    <a  class = "proj" id="katana">
-                        <img src="katana.jpg" alt="" class="projico" >
-                    </a>
-                </div>
-                <div class="column">
-                    <a  class = "proj" id="kobeni">
-                        <img src="kobeniface.png" alt="" class="projico" >
-                    </a>
-                </div>
-            </div>
 
-            <div id="description">
+            <p class ="name" style="font-size: 14px; padding-left: 100px;"> <b> CONTACTS <br>Discord:  Fataliti // Reifshneider#3923<br>Telegram: @fatalitiq<br>Email: fataliti22@gmail.com</b></p>
+        </div>
 
+            <div style="width: 950px;">
+                <h1 style="text-align: center;" class="name">MY WORKS</h1>
+                <div class="tab">
+                    <div class="column">
+                        <a  class = "proj" id="direct">
+                            <img src="dirico.png" alt="" class="projico" >
+                        </a>
+                    </div>
+                    <div class="column">
+                        <a  class = "proj" id="sentinel">
+                            <img src="tss.jpg" alt="" class="projico" >
+                        </a>
+                    </div>
+                    <div class="column">
+                        <a   class = "proj" id="swarmites">
+                            <img src="tsss.jpg" alt="" class="projico" >
+                        </a>
+                    </div>
+                    <div class="column">
+                        <a  class = "proj" id="space">
+                            <img src="dss.jpg" alt="" class="projico" >
+                        </a>
+                    </div>
+                    <div class="column">
+                        <a  class = "proj" id="mania">
+                            <img src="mania.webp" alt="" class="projico" >
+                        </a>
+                    </div>
+                    <div class="column">
+                        <a  class = "proj" id="katana">
+                            <img src="katana.jpg" alt="" class="projico" >
+                        </a>
+                    </div>
+                    <div class="column">
+                        <a  class = "proj" id="kobeni">
+                            <img src="kobeniface.png" alt="" class="projico" >
+                        </a>
+                    </div>
+                </div>
+
+                <div id="description">
+
+                </div> 
             </div>
+        </div>
 
         </div>
     </body>

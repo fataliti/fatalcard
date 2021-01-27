@@ -1,6 +1,7 @@
 
 import js.Browser.document;
 import js.Browser.window;
+
 class Main {
 
     static function main() {
@@ -48,7 +49,7 @@ class Main {
                 var par = document.createElement('p');
                 par.textContent = desc;
                 par.className = 'name';
-                par.setAttribute('style', 'text-align: center; font-size: 20px; width: 500px; display: flex; margin: auto;');
+                par.setAttribute('style', 'text-align: center; font-size: 20px; width: 500px; display: flex; margin: auto; font-weight: 600;');
                 
 
                 var screenDiv = document.createElement('div');
@@ -66,14 +67,6 @@ class Main {
                 rootDiv.appendChild(par);
                 rootDiv.appendChild(screenDiv);
                 divDesc.appendChild(rootDiv);
-
-                
-                var t = new haxe.Timer(5);
-                t.run = function () {
-                    window.scrollTo(0, document.body.scrollHeight);
-                    t.stop();
-                }
-                
             }
 
             document.getElementById('sentinel').onclick = function()  { setDesc(
