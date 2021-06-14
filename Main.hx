@@ -1,4 +1,5 @@
 
+import js.html.Console;
 import js.Browser.document;
 import js.Browser.window;
 
@@ -27,7 +28,7 @@ class Main {
 
             var divDesc = document.getElementById('description');
 
-            var setDesc = (proj:String, desc:String, imgs:Array<String>, link:String = '') -> {
+            var setDesc = (proj:String, desc:String, ?imgs:Array<String>, link:String = '') -> {
                 if (divDesc.firstElementChild != null) {
                     divDesc.firstElementChild.remove();
                 }
@@ -49,18 +50,20 @@ class Main {
                 var par = document.createElement('p');
                 par.textContent = desc;
                 par.className = 'name';
-                par.setAttribute('style', 'text-align: center; font-size: 20px; width: 500px; display: flex; margin: auto; font-weight: 600;');
+                par.setAttribute('style', 'text-align: center; font-size: 20px; width: 500px;  margin: auto; font-weight: 600;');
                 
 
                 var screenDiv = document.createElement('div');
                 screenDiv.className = 'tab';
                 screenDiv.setAttribute('style', 'padding-top: 10px;');
                 
-                for (s in imgs) {
-                    var _img = document.createElement('img');
-                    _img.className = 'screens';
-                    _img.setAttribute('src', s);
-                    screenDiv.appendChild(_img);
+                if (imgs != null) {
+                    for (s in imgs) {
+                        var _img = document.createElement('img');
+                        _img.className = 'screens';
+                        _img.setAttribute('src', s);
+                        screenDiv.appendChild(_img);
+                    }
                 }
 
                 rootDiv.appendChild(_link);
@@ -124,10 +127,107 @@ class Main {
                 );
             }
 
+            document.getElementById("extend").onclick = () -> {
+                var otherProjDiv = document.getElementById("otherproj");
+            
+                var addSideProject = (p:AnotherProject) -> {
+                    var div = document.createElement('div');
+                    div.className = 'column';
+                    var a = document.createElement('a');
+                    a.className = 'proj';
+                    a.onclick = () -> {
+                        setDesc(p.projName, p.projDesc, p.projPics, p.projLink);
+                    }
+
+                    div.appendChild(a);
+                    var img = document.createImageElement();
+                    img.className = 'projico';
+                    img.src = p.projIco;
+                    a.appendChild(img);
+                    img.onmouseover = function () {
+                        img.className = 'projicoact';
+                    }
+                    img.onmouseout = function () {
+                        img.className = 'projico';
+                    }
+                    otherProjDiv.appendChild(div);
+                }
+
+                var sideprojects:Array<AnotherProject> = [
+                    {
+                        projIco: 'src/img/castoff.png', 
+                        projName: 'CASTOFF', 
+                        projDesc: 'A small jam games about mages', 
+                        projLink: 'https://fataliti.itch.io/cast-off', 
+                        projPics: ['src/img/castoff2.gif']
+                    },
+                    {
+                        projIco: 'src/img/rgdbot.webp',
+                        projName: 'RGD BOT',
+                        projDesc: 'Russian Gamedev Server\'s discord bot made with HAXE',
+                        projLink: 'https://github.com/fataliti/RgdBot',
+                    }, 
+                    {
+                        projIco: 'src/img/podsosbot.webp',
+                        projName: 'PODSOS BOT',
+                        projDesc: 'Multiserver discord bot which posts pictures from some booru resourses, also made with HAXE',
+                        projLink: 'https://github.com/fataliti/Fatalny-podsos',
+                    },
+                    {
+                        projIco: 'src/img/gmedit.png',
+                        projName: 'GMEDIT DISCORD RPC PLUGIN',
+                        projDesc: 'The plugin will show your status in Discord',
+                        projLink: 'https://github.com/fataliti/GMEdit-Discord-RPC',
+                        projPics: ['src/img/demo.png']
+                    },
+                    {
+                        projIco: 'src/img/GMV.png',
+                        projName: 'GM VIDEO',
+                        projDesc: 'An extension for Game Maker Studio 2 which allow to play videos',
+                        projLink: 'https://fataliti.itch.io/gmvideo',
+                        projPics: ['src/img/video.png']
+                    },
+                    {
+                        projIco: 'src/img/ShB.png',
+                        projName: 'SHADER BRUH',
+                        projDesc: 'A tool which allow to make shaders for ame Maker Studio 2 with graphic node editor',
+                        projLink: 'https://fataliti.itch.io/shaderbruh',
+                        projPics: ['src/img/shader.png']
+                    },
+                    {
+                        projIco: 'src/img/orcico.png',
+                        projName: 'ORCS\'S FATE',
+                        projDesc: 'One of my first games, russian visual novel about orc',
+                        projLink: 'https://fataliti.pro/orc/orc.html',
+                        projPics: ['src/img/orcimg.png']
+                    },
+                    {
+                        projIco: 'src/img/evoico.png',
+                        projName: 'EVO',
+                        projDesc: 'Another one jam game about evolution',
+                        projLink: 'https://fataliti.pro/evo/evonext.html',
+                        projPics: ['src/img/evogif.gif']
+                    },
+
+                ];
+
+                for (s in sideprojects) {
+                    addSideProject(s);
+                }
+            }
+
         }
     }
 
-
-
 }
+
+
+typedef AnotherProject = {
+    projIco:String,
+    projName:String,
+    projDesc:String,
+    projLink:String,
+    ?projPics:Array<String>,
+}
+
 
