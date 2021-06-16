@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        table {
+            width: 500px;
+        }
+    </style>
+    <script src="rgd.js"></script>
+</head>
+<body>
+    <br>
+    Дискорд ID автора(ов) <input type="text" name="" id="author">
+    <br>
+    Название проекта <input type="text" name="" id="project" >
+    <br>
+    Цена <input type="text" name="" id="cost" >
+    <br>
+    Жанр <input type="text" name="" id="genre" >
+
+    <br><br>
+    Ссылки на страницы проета
+    <br>
+    <select name="" id="platform"> 
+        <option value="platform">Платформа</option>
+        <option value="steam">steam</option>
+        <option value="gp">play market</option>
+        <option value="itch">itch</option>
+        <option value="apple">apple gay store</option>
+        <option value="nintendo">nintendo</option>
+    </select>
+    <input type="text" name="" value="ссылка на проект" id="link">
+    <button id="addlink">добавить</button>
+    <br>
+
+    
+    <br>
+    <table id="links">
+        <tr >
+            <th>Платформа</th>
+            <th>Ссылка</th>
+            <th>Удалить</th>
+        </tr>
+    </table>
+
+    <br>
+    Описание проекта
+    <br>
+    <textarea name="" cols="30" rows="10" id="desc"></textarea>
+    <br>
+    Изображение <input type="file" src="" alt="" id="pic">
+
+    <br><br><br>
+    <button id="work">ОБРОБОТОТЬ</button>
+    <br>
+    То что нужно отправить в ргд 
+    <br>
+    <textarea name="" id="out" cols="30" rows="10" ></textarea>
+</body>
+</html>
