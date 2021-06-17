@@ -4,7 +4,7 @@ var Rgd = function() { };
 Rgd.main = function() {
 	window.onload = function() {
 		Rgd.elem("work").onclick = function() {
-			var project = { author : Rgd.value(Rgd.elem("author")), name : Rgd.value(Rgd.elem("project")), description : Rgd.value(Rgd.elem("desc")), cost : Rgd.value(Rgd.elem("cost")), genre : Rgd.value(Rgd.elem("genre")), platforms : []};
+			var project = { author : Rgd.value(Rgd.elem("author")), name : Rgd.value(Rgd.elem("project")), description : Rgd.value(Rgd.elem("desc")), cost : Rgd.value(Rgd.elem("cost")), genre : Rgd.value(Rgd.elem("genre")), color : Rgd.value(Rgd.elem("color")), platforms : []};
 			var platforms = window.document.getElementsByClassName("telem");
 			var _g = 0;
 			while(_g < platforms.length) {

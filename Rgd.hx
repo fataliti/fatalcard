@@ -19,6 +19,7 @@ class Rgd {
                     description: value(elem('desc')),
                     cost: value(elem('cost')),
                     genre: value(elem('genre')),
+                    color: value(elem('color')),
                     platforms: [],
                 }
 
@@ -89,11 +90,12 @@ typedef Project = {
     ?author:String,
     ?name:String,
     ?cost:String,
+    ?color:String,
     ?genre:String,
     ?platforms:Array<{
         platform:String,
         link:String
     }>,
     ?description:String,
-    ?picture:String
+    ?picture:String,
 }
