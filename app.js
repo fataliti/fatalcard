@@ -121,12 +121,16 @@ Main.main = function() {
 				return otherProjDiv.appendChild(div);
 			};
 			var sideprojects = [{ projIco : "src/img/castoff.png", projName : "CASTOFF", projDesc : "A small jam games about mages", projLink : "https://fataliti.itch.io/cast-off", projPics : ["src/img/castoff2.gif"]},{ projIco : "src/img/rgdbot.webp", projName : "RGD BOT", projDesc : "Russian Gamedev Server's discord bot made with HAXE", projLink : "https://github.com/fataliti/RgdBot"},{ projIco : "src/img/podsosbot.webp", projName : "PODSOS BOT", projDesc : "Multiserver discord bot which posts pictures from some booru resourses, also made with HAXE", projLink : "https://github.com/fataliti/Fatalny-podsos"},{ projIco : "src/img/gmedit.png", projName : "GMEDIT DISCORD RPC PLUGIN", projDesc : "The plugin will show your status in Discord", projLink : "https://github.com/fataliti/GMEdit-Discord-RPC", projPics : ["src/img/demo.png"]},{ projIco : "src/img/GMV.png", projName : "GM VIDEO", projDesc : "An extension for Game Maker Studio 2 which allow to play videos", projLink : "https://fataliti.itch.io/gmvideo", projPics : ["src/img/video.png"]},{ projIco : "src/img/ShB.png", projName : "SHADER BRUH", projDesc : "A tool which allow to make shaders for ame Maker Studio 2 with graphic node editor", projLink : "https://fataliti.itch.io/shaderbruh", projPics : ["src/img/shader.png"]},{ projIco : "src/img/orcico.png", projName : "ORCS'S FATE", projDesc : "One of my first games, russian visual novel about orc", projLink : "https://fataliti.pro/orc/orc.html", projPics : ["src/img/orcimg.png"]},{ projIco : "src/img/evoico.png", projName : "EVO", projDesc : "Another one jam game about evolution", projLink : "https://fataliti.pro/evo/evonext.html", projPics : ["src/img/evogif.gif"]}];
+			if(Main.is_extended) {
+				return;
+			}
 			var _g = 0;
 			while(_g < sideprojects.length) {
 				var s = sideprojects[_g];
 				++_g;
 				addSideProject(s);
 			}
+			Main.is_extended = true;
 		};
 	};
 };
@@ -142,5 +146,6 @@ haxe_iterators_ArrayIterator.prototype = {
 		return this.array[this.current++];
 	}
 };
+Main.is_extended = false;
 Main.main();
 })({});

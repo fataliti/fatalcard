@@ -5,6 +5,8 @@ import js.Browser.window;
 
 class Main {
 
+    static var is_extended = false;
+
     static function main() {
         window.onload = function() {
 
@@ -211,9 +213,15 @@ class Main {
 
                 ];
 
+                if (is_extended) {
+                    return;
+                }
+
                 for (s in sideprojects) {
                     addSideProject(s);
                 }
+
+                is_extended = true;
             }
 
         }
