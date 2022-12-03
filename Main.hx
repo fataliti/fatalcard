@@ -6,10 +6,10 @@ import js.Browser.window;
 class Main {
 
     static var is_extended = false;
+    static var selected_pic = null;
 
     static function main() {
         window.onload = function() {
-
             for (element in document.getElementsByClassName('imglink')) {
                 element.onmouseover = function () {
                     element.className = 'overed';
@@ -24,7 +24,9 @@ class Main {
                     element.className = 'projicoact';
                 }
                 element.onmouseout = function () {
-                    element.className = 'projico';
+                    if (element != selected_pic) {
+                        element.className = 'projico';
+                    }
                 }
             }
 
@@ -71,77 +73,85 @@ class Main {
                 rootDiv.appendChild(screenDiv);
                 divDesc.appendChild(rootDiv);
             }
-
-            document.getElementById('sentinel').onclick = function()  { setDesc(
-                'TERMINAL SQUAD: SENTINEL',
-                'Terminal Squad: Sentinel represents a mixture of different genres, where the player must destroy the waves of enemies as a mech pilot, using the field match3 for charging of assault and protective equipment. The power of enemies and the award for their elimination grow with the progression of levels.',
-                ['sent1.jpg', 'sent2.jpg'],
-                'https://store.steampowered.com/app/1118050/Terminal_squad_Sentinel/'
-                );
+            
+            var bind_click_to_link = function(_link_id:String, _project:AnotherProject):Void {
+                var element = document.getElementById(_link_id);
+                    element.onclick = function() {
+                        var picture = element.firstElementChild;
+                        if (selected_pic != null) {
+                            selected_pic.className = 'projico';
+                        }
+                        selected_pic = picture;
+                        selected_pic.className = 'projicoact';
+                        setDesc(_project.projName,  _project.projDesc, _project.projPics, _project.projLink);
+                    }
             }
 
-            document.getElementById('swarmites').onclick = function()  { setDesc(
-                'TERMINAL SQUAD: SWARMITES',
-                'Terminal squad: swarmites is a game with indirect control where you must erect a chain of buildings, which generate resources for construction or the combat units for destruction of an enemy.',
-                ['swarm1.jpg', 'swarm2.jpg'],
-                'https://store.steampowered.com/app/1217330/Terminal_squad_Swarmites/'
-                );
-            }
+            bind_click_to_link("sentinel", {
+                projName: 'TERMINAL SQUAD: SENTINEL', 
+                projDesc: 'Terminal Squad: Sentinel represents a mixture of different genres, where the player must destroy the waves of enemies as a mech pilot, using the field match3 for charging of assault and protective equipment. The power of enemies and the award for their elimination grow with the progression of levels.', 
+                projLink: 'https://store.steampowered.com/app/1118050/Terminal_squad_Sentinel/', 
+                projPics: ['sent1.jpg', 'sent2.jpg']
+            });
 
-            document.getElementById('space').onclick = function () { setDesc(
-                'DEEP SPACE SHOOTER',
-                'The first game of mine which was published on Steam',
-                ['space1.jpg', 'space2.jpg'],
-                'https://store.steampowered.com/app/972280/Deep_Space_Shooter/'
-                );
-            }
+            bind_click_to_link("swarmites", {
+                projName: 'TERMINAL SQUAD: SWARMITES', 
+                projDesc: 'Terminal squad: swarmites is a game with indirect control where you must erect a chain of buildings, which generate resources for construction or the combat units for destruction of an enemy.', 
+                projLink: 'https://store.steampowered.com/app/1217330/Terminal_squad_Swarmites/', 
+                projPics: ['swarm1.jpg', 'swarm2.jpg']
+            });
 
-            document.getElementById('mania').onclick = function () { setDesc(
-                'RHYTHM MANIA: MUSIC GAME',
-                'A rhythm game for anroid with 10 000+ installs and online highscore tables',
-                ['maniagif.gif'],
-                'https://play.google.com/store/apps/details?id=com.fataliti.rhythm&hl=ru&gl=US'
-                );
-            }
+            bind_click_to_link("space", {
+                projName: 'DEEP SPACE SHOOTER', 
+                projDesc: 'The first game of mine which was published on Steam', 
+                projLink: 'https://store.steampowered.com/app/972280/Deep_Space_Shooter/', 
+                projPics: ['space1.jpg', 'space2.jpg']
+            });
 
-            document.getElementById('direct').onclick = function () { setDesc(
-                'FATALNY DIRECT',
-                'Standalone osu! beatmap downloader with Tillerino and PPaddict integration',
-                ['direct.jpg'],
-                'https://fataliti.itch.io/fatalny-direct'
-                );
-            }
-            document.getElementById('katana').onclick = function () { setDesc(
-                'KATANA REVERS',
-                'A small game for a gamejam with time manipulations',
-                ['katana.gif'],
-                'https://fataliti.itch.io/katana-revers'
-                );
-            }
+            bind_click_to_link("mania", {
+                projName: 'RHYTHM MANIA: MUSIC GAME', 
+                projDesc: 'A rhythm game for anroid with 10 000+ installs and online highscore tables', 
+                projLink: 'https://play.google.com/store/apps/details?id=com.fataliti.rhythm&hl=ru&gl=US', 
+                projPics: ['maniagif.gif']
+            });
 
-            document.getElementById('kobeni').onclick = function () { setDesc(
-                'CHAINSAW DANCE',
-                'A small rhythm fan game about dancing Kobeni',
-                ['kobeni1.gif', 'kobeni2.gif'],
-                'https://benedique.itch.io/chainsaw-dance'
-                );
-            }
+            bind_click_to_link("direct", {
+                projName: 'FATALNY DIRECT', 
+                projDesc: 'Standalone osu! beatmap downloader with Tillerino and PPaddict integration', 
+                projLink: 'https://fataliti.itch.io/fatalny-direct', 
+                projPics: ['direct.jpg']
+            });
 
-            document.getElementById('gunvein').onclick = function () { setDesc(
-                'GUNVEIN',
-                'Bullethell shoot em up game',
-                ['gunvein1.gif','gunvein2.gif'],
-                'https://store.steampowered.com/app/2025840/Gunvein/'
-                );
-            }
+            bind_click_to_link("katana", {
+                projName: 'KATANA REVERS', 
+                projDesc: 'A small game for a gamejam with time manipulations', 
+                projLink: 'https://fataliti.itch.io/katana-revers', 
+                projPics: ['katana.gif']
+            });
 
-            document.getElementById('norland').onclick = function () { setDesc(
-                'NORLAND',
-                'Norland is a medieval kingdom sim inspired by Rimworld, Crusader Kings, and Caesar that generates complex stories.',
-                ['norland.gif'],
-                'https://store.steampowered.com/app/1857090/Norland/'
-                );
-            }
+            bind_click_to_link("kobeni", {
+                projName: 'CHAINSAW DANCE', 
+                projDesc: 'A small rhythm fan game about dancing Kobeni', 
+                projLink: 'https://benedique.itch.io/chainsaw-dance', 
+                projPics: ['kobeni1.gif', 'kobeni2.gif']
+            });
+
+            bind_click_to_link("gunvein", {
+                projName: 'GUNVEIN', 
+                projDesc: 'Bullethell shoot em up game', 
+                projLink: 'https://store.steampowered.com/app/2025840/Gunvein/',
+                projPics: ['gunvein1.gif','gunvein2.gif']
+            });
+
+
+            bind_click_to_link("norland", {
+                projName: 'NORLAND', 
+                projDesc: 'Norland is a medieval kingdom sim inspired by Rimworld, Crusader Kings, and Caesar that generates complex stories.', 
+                projLink: 'https://store.steampowered.com/app/1857090/Norland/',
+                projPics: ['norland.gif']
+            });
+
+            document.getElementById('norland').onclick();
 
             document.getElementById("extend").onclick = () -> {
                 var otherProjDiv = document.getElementById("otherproj");
@@ -151,22 +161,37 @@ class Main {
                     div.className = 'column';
                     var a = document.createElement('a');
                     a.className = 'proj';
-                    a.onclick = () -> {
-                        setDesc(p.projName, p.projDesc, p.projPics, p.projLink);
-                    }
+                    a.id = "id_" + p.projName;
+
+
+
+                    // a.onclick = () -> {
+                    //     setDesc(p.projName, p.projDesc, p.projPics, p.projLink);
+                    // }
 
                     div.appendChild(a);
                     var img = document.createImageElement();
                     img.className = 'projico';
                     img.src = p.projIco;
                     a.appendChild(img);
+
                     img.onmouseover = function () {
                         img.className = 'projicoact';
                     }
                     img.onmouseout = function () {
-                        img.className = 'projico';
+                        if (img != selected_pic) {
+                            img.className = 'projico';
+                        }
                     }
+
+                    // img.onmouseover = function () {
+                    //     img.className = 'projicoact';
+                    // }
+                    // img.onmouseout = function () {
+                    //     img.className = 'projico';
+                    // }
                     otherProjDiv.appendChild(div);
+                    bind_click_to_link(a.id, p);
                 }
 
                 var sideprojects:Array<AnotherProject> = [
@@ -245,7 +270,7 @@ class Main {
 
 
 typedef AnotherProject = {
-    projIco:String,
+    ?projIco:String,
     projName:String,
     projDesc:String,
     projLink:String,
