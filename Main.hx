@@ -45,19 +45,17 @@ class Main {
                 var h4 = document.createElement('h4');
                 h4.textContent = proj;
                 h4.className = 'name';
-                h4.setAttribute('style', 'text-align: center; font-size: 20px;');
+                h4.setAttribute('style', 'text-align: center; font-size: 20px; margin-top: 5px');
 
                 _link.appendChild(h4);
 
                 var par = document.createElement('p');
                 par.textContent = desc;
                 par.className = 'name';
-                par.setAttribute('style', 'text-align: center; font-size: 20px; width: 500px;  margin: auto; font-weight: 600;');
+                par.setAttribute('style', 'text-align: center; font-size: 20px; width: 500px;  margin: auto; font-weight: 600; margin-top: -25px');
                 
-
                 var screenDiv = document.createElement('div');
                 screenDiv.className = 'tab';
-                screenDiv.setAttribute('style', 'padding-top: 10px;');
                 
                 if (imgs != null) {
                     for (s in imgs) {
@@ -126,6 +124,22 @@ class Main {
                 'A small rhythm fan game about dancing Kobeni',
                 ['kobeni1.gif', 'kobeni2.gif'],
                 'https://benedique.itch.io/chainsaw-dance'
+                );
+            }
+
+            document.getElementById('gunvein').onclick = function () { setDesc(
+                'GUNVEIN',
+                'Bullethell shoot em up game',
+                ['gunvein1.gif','gunvein2.gif'],
+                'https://store.steampowered.com/app/2025840/Gunvein/'
+                );
+            }
+
+            document.getElementById('norland').onclick = function () { setDesc(
+                'NORLAND',
+                'Norland is a medieval kingdom sim inspired by Rimworld, Crusader Kings, and Caesar that generates complex stories.',
+                ['norland.gif'],
+                'https://store.steampowered.com/app/1857090/Norland/'
                 );
             }
 
