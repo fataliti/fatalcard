@@ -3,40 +3,6 @@
 var Main = function() { };
 Main.main = function() {
 	window.onload = function() {
-		var _g = 0;
-		var _g1 = window.document.getElementsByClassName("imglink");
-		while(_g < _g1.length) {
-			var element = [_g1[_g]];
-			++_g;
-			element[0].onmouseover = (function(element) {
-				return function() {
-					element[0].className = "overed";
-				};
-			})(element);
-			element[0].onmouseout = (function(element) {
-				return function() {
-					element[0].className = "imglink";
-				};
-			})(element);
-		}
-		var _g = 0;
-		var _g1 = window.document.getElementsByClassName("projico");
-		while(_g < _g1.length) {
-			var element1 = [_g1[_g]];
-			++_g;
-			element1[0].onmouseover = (function(element) {
-				return function() {
-					element[0].className = "projicoact";
-				};
-			})(element1);
-			element1[0].onmouseout = (function(element) {
-				return function() {
-					if(element[0] != Main.selected_pic) {
-						element[0].className = "projico";
-					}
-				};
-			})(element1);
-		}
 		var divDesc = window.document.getElementById("description");
 		var setDesc = function(proj,desc,imgs,link) {
 			if(link == null) {
@@ -79,13 +45,23 @@ Main.main = function() {
 		};
 		var bind_click_to_link = function(_link_id,_project) {
 			var element = window.document.getElementById(_link_id);
+			var picture = element.firstElementChild;
+			picture.onmouseover = function() {
+				if(picture != Main.selected_pic) {
+					picture.className = "projicoact";
+				}
+			};
+			picture.onmouseout = function() {
+				if(picture != Main.selected_pic) {
+					picture.className = "projico";
+				}
+			};
 			element.onclick = function() {
-				var picture = element.firstElementChild;
 				if(Main.selected_pic != null) {
 					Main.selected_pic.className = "projico";
 				}
 				Main.selected_pic = picture;
-				Main.selected_pic.className = "projicoact";
+				Main.selected_pic.className = "projico_selected";
 				setDesc(_project.projName,_project.projDesc,_project.projPics,_project.projLink);
 			};
 		};
@@ -112,14 +88,6 @@ Main.main = function() {
 				img.className = "projico";
 				img.src = p.projIco;
 				a.appendChild(img);
-				img.onmouseover = function() {
-					img.className = "projicoact";
-				};
-				img.onmouseout = function() {
-					if(img != Main.selected_pic) {
-						img.className = "projico";
-					}
-				};
 				otherProjDiv.appendChild(div);
 				bind_click_to_link(a.id,p);
 			};

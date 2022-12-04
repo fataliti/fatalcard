@@ -6,29 +6,10 @@ import js.Browser.window;
 class Main {
 
     static var is_extended = false;
-    static var selected_pic = null;
+    static var selected_pic:js.html.Element = null;
 
     static function main() {
         window.onload = function() {
-            for (element in document.getElementsByClassName('imglink')) {
-                element.onmouseover = function () {
-                    element.className = 'overed';
-                }
-                element.onmouseout = function () {
-                    element.className = 'imglink';
-                }
-            }
-            
-            for (element in document.getElementsByClassName('projico')) {
-                element.onmouseover = function () {
-                    element.className = 'projicoact';
-                }
-                element.onmouseout = function () {
-                    if (element != selected_pic) {
-                        element.className = 'projico';
-                    }
-                }
-            }
 
             var divDesc = document.getElementById('description');
 
@@ -76,15 +57,27 @@ class Main {
             
             var bind_click_to_link = function(_link_id:String, _project:AnotherProject):Void {
                 var element = document.getElementById(_link_id);
-                    element.onclick = function() {
-                        var picture = element.firstElementChild;
-                        if (selected_pic != null) {
-                            selected_pic.className = 'projico';
-                        }
-                        selected_pic = picture;
-                        selected_pic.className = 'projicoact';
-                        setDesc(_project.projName,  _project.projDesc, _project.projPics, _project.projLink);
+                var picture = element.firstElementChild;
+
+                picture.onmouseover = function () {
+                    if (picture != selected_pic) {
+                        picture.className = 'projicoact';
                     }
+                }
+                picture.onmouseout = function () {
+                    if (picture != selected_pic) {
+                        picture.className = 'projico';
+                    }
+                }
+
+                element.onclick = function() {
+                    if (selected_pic != null) {
+                        selected_pic.className = 'projico';
+                    }
+                    selected_pic = picture;
+                    selected_pic.className = 'projico_selected';
+                    setDesc(_project.projName,  _project.projDesc, _project.projPics, _project.projLink);
+                }
             }
 
             bind_click_to_link("sentinel", {
@@ -163,33 +156,12 @@ class Main {
                     a.className = 'proj';
                     a.id = "id_" + p.projName;
 
-
-
-                    // a.onclick = () -> {
-                    //     setDesc(p.projName, p.projDesc, p.projPics, p.projLink);
-                    // }
-
                     div.appendChild(a);
                     var img = document.createImageElement();
                     img.className = 'projico';
                     img.src = p.projIco;
                     a.appendChild(img);
 
-                    img.onmouseover = function () {
-                        img.className = 'projicoact';
-                    }
-                    img.onmouseout = function () {
-                        if (img != selected_pic) {
-                            img.className = 'projico';
-                        }
-                    }
-
-                    // img.onmouseover = function () {
-                    //     img.className = 'projicoact';
-                    // }
-                    // img.onmouseout = function () {
-                    //     img.className = 'projico';
-                    // }
                     otherProjDiv.appendChild(div);
                     bind_click_to_link(a.id, p);
                 }
