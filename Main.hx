@@ -136,6 +136,12 @@ class Main {
                 projPics: ['gunvein1.gif','gunvein2.gif']
             });
 
+            bind_click_to_link("lucido", {
+                projName: 'LUCIDO CANCELS EVERYTHING', 
+                projDesc: 'Psychedelic Beat \'Em Up', 
+                projLink: 'https://store.steampowered.com/app/2898730/LUCIDO_Cancels_Everything/',
+                projPics: ['lucido_guf_2.webp']
+            });
 
             bind_click_to_link("norland", {
                 projName: 'NORLAND', 
