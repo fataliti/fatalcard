@@ -150,6 +150,14 @@ class Main {
                 projPics: ['norland.gif']
             });
 
+            bind_click_to_link("rgd", {
+                projName: 'RGD Bar', 
+                projDesc: 'Small bar for you and your friends', 
+                projLink: 'https://fataliti.itch.io/rgd-bar', 
+                projPics: ['src/img/bar_1.png', 'src/img/bar_2.png']
+            });
+
+
             document.getElementById('norland').onclick();
 
             document.getElementById("extend").onclick = () -> {
