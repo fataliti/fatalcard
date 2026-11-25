@@ -91,7 +91,7 @@ class Main {
                 projName: 'RHYTHM MANIA: MUSIC GAME', 
                 projDesc: 'A rhythm game for anroid with 10 000+ installs and online highscore tables', 
                 projLink: 'https://play.google.com/store/apps/details?id=com.fataliti.rhythm&hl=ru&gl=US', 
-                projPics: [PROJECT_PREVIEWS + 'maniagif.gif']
+                projPics: [PROJECT_PREVIEWS + 'maniagif.webp']
             });
 
             bindProject(document.getElementById("direct"), {
@@ -105,21 +105,21 @@ class Main {
                 projName: 'KATANA REVERS', 
                 projDesc: 'A small game for a gamejam with time manipulations', 
                 projLink: 'https://fataliti.itch.io/katana-revers', 
-                projPics: [PROJECT_PREVIEWS + 'katana.gif']
+                projPics: [PROJECT_PREVIEWS + 'katana.webp']
             });
 
             bindProject(document.getElementById("kobeni"), {
                 projName: 'CHAINSAW DANCE', 
                 projDesc: 'A small rhythm fan game about dancing Kobeni', 
                 projLink: 'https://benedique.itch.io/chainsaw-dance', 
-                projPics: [PROJECT_PREVIEWS + 'kobeni1.gif', PROJECT_PREVIEWS + 'kobeni2.gif']
+                projPics: [PROJECT_PREVIEWS + 'kobeni1.webp', PROJECT_PREVIEWS + 'kobeni2.webp']
             });
 
             bindProject(document.getElementById("gunvein"), {
                 projName: 'GUNVEIN', 
                 projDesc: 'Bullethell shoot em up game', 
                 projLink: 'https://store.steampowered.com/app/2025840/Gunvein/',
-                projPics: [PROJECT_PREVIEWS + 'gunvein1.gif',PROJECT_PREVIEWS + 'gunvein2.gif']
+                projPics: [PROJECT_PREVIEWS + 'gunvein1.webp',PROJECT_PREVIEWS + 'gunvein2.webp']
             });
 
             bindProject(document.getElementById("lucido"), {
@@ -134,7 +134,7 @@ class Main {
                 projName: 'NORLAND', 
                 projDesc: 'Norland is a medieval kingdom sim inspired by Rimworld, Crusader Kings, and Caesar that generates complex stories.', 
                 projLink: 'https://store.steampowered.com/app/1857090/Norland/',
-                projPics: [PROJECT_PREVIEWS + 'norland.gif']
+                projPics: [PROJECT_PREVIEWS + 'norland.webp']
             });
 
             bindProject(document.getElementById("rgd"), {
@@ -157,7 +157,7 @@ class Main {
                         projName: 'CASTOFF', 
                         projDesc: 'A small jam games about mages', 
                         projLink: 'https://fataliti.itch.io/cast-off', 
-                        projPics: [PROJECT_PREVIEWS + 'castoff2.gif']
+                        projPics: [PROJECT_PREVIEWS + 'castoff2.webp']
                     },
                     {
                         projIco: PROJECT_ICONS + 'rgdbot.webp',
@@ -204,7 +204,7 @@ class Main {
                         projName: 'EVO',
                         projDesc: 'Another one jam game about evolution',
                         projLink: 'https://fataliti.pro/evo/evonext.html',
-                        projPics: [PROJECT_PREVIEWS + 'evogif.gif']
+                        projPics: [PROJECT_PREVIEWS + 'evogif.webp']
                     },
 
                 ];
