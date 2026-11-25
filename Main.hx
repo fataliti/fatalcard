@@ -1,156 +1,141 @@
 
-import js.html.Console;
 import js.Browser.document;
 import js.Browser.window;
+import js.html.Element;
 
 class Main {
 
-    static var is_extended = false;
-    static var selected_pic:js.html.Element = null;
-
     static function main() {
         window.onload = function() {
-
             var divDesc = document.getElementById('description');
+            var selectedProject:Element = null;
 
-            var setDesc = (proj:String, desc:String, ?imgs:Array<String>, link:String = '') -> {
+            var showProject = (project:AnotherProject) -> {
                 if (divDesc.firstElementChild != null) {
                     divDesc.firstElementChild.remove();
                 }
 
                 var rootDiv = document.createElement('div');
-                
-                var _link = document.createElement('a');
-                _link.setAttribute('href', link);
-                _link.setAttribute('target', '_blank');
-                _link.setAttribute('style', 'color: #000000;');
+                var title = document.createElement('h3');
+                title.className = 'name project-title';
 
-                var h4 = document.createElement('h4');
-                h4.textContent = proj;
-                h4.className = 'name';
-                h4.setAttribute('style', 'text-align: center; font-size: 20px; margin-top: 5px');
-
-                _link.appendChild(h4);
+                var link = document.createAnchorElement();
+                link.href = project.projLink;
+                link.target = '_blank';
+                link.textContent = project.projName;
+                title.appendChild(link);
+                rootDiv.appendChild(title);
 
                 var par = document.createElement('p');
-                par.textContent = desc;
-                par.className = 'name';
-                par.setAttribute('style', 'text-align: center; font-size: 20px; width: 500px;  margin: auto; font-weight: 600; margin-top: -25px');
-                
-                var screenDiv = document.createElement('div');
-                screenDiv.className = 'tab';
-                
-                if (imgs != null) {
-                    for (s in imgs) {
-                        var _img = document.createElement('img');
-                        _img.className = 'screens';
-                        _img.setAttribute('src', s);
-                        screenDiv.appendChild(_img);
-                    }
-                }
-
-                rootDiv.appendChild(_link);
+                par.textContent = project.projDesc;
+                par.className = 'name project-copy';
                 rootDiv.appendChild(par);
-                rootDiv.appendChild(screenDiv);
+
+                if (project.projPics != null) {
+                    var screenDiv = document.createElement('div');
+                    screenDiv.className = 'tab project-screens';
+                    for (src in project.projPics) {
+                        var img = document.createImageElement();
+                        img.className = 'screens';
+                        img.alt = '';
+                        img.src = src;
+                        screenDiv.appendChild(img);
+                    }
+                    rootDiv.appendChild(screenDiv);
+                }
+
                 divDesc.appendChild(rootDiv);
-            }
-            
-            var bind_click_to_link = function(_link_id:String, _project:AnotherProject):Void {
-                var element = document.getElementById(_link_id);
-                var picture = element.firstElementChild;
+            };
 
-                picture.onmouseover = function () {
-                    if (picture != selected_pic) {
-                        picture.className = 'projicoact';
-                    }
-                }
-                picture.onmouseout = function () {
-                    if (picture != selected_pic) {
-                        picture.className = 'projico';
-                    }
-                }
+            var bindProject = (button:Element, project:AnotherProject) -> {
+                button.setAttribute('aria-controls', 'description');
+                button.setAttribute('aria-pressed', 'false');
 
-                element.onclick = function() {
-                    if (selected_pic != null) {
-                        selected_pic.className = 'projico';
+                button.onclick = () -> {
+                    if (button == selectedProject) {
+                        return;
                     }
-                    selected_pic = picture;
-                    selected_pic.className = 'projico_selected';
-                    setDesc(_project.projName,  _project.projDesc, _project.projPics, _project.projLink);
-                }
-            }
+                    if (selectedProject != null) {
+                        selectedProject.setAttribute('aria-pressed', 'false');
+                    }
+                    selectedProject = button;
+                    button.setAttribute('aria-pressed', 'true');
+                    showProject(project);
+                };
+            };
 
-            bind_click_to_link("sentinel", {
+            bindProject(document.getElementById("sentinel"), {
                 projName: 'TERMINAL SQUAD: SENTINEL', 
                 projDesc: 'Terminal Squad: Sentinel represents a mixture of different genres, where the player must destroy the waves of enemies as a mech pilot, using the field match3 for charging of assault and protective equipment. The power of enemies and the award for their elimination grow with the progression of levels.', 
                 projLink: 'https://store.steampowered.com/app/1118050/Terminal_squad_Sentinel/', 
                 projPics: ['sent1.jpg', 'sent2.jpg']
             });
 
-            bind_click_to_link("swarmites", {
+            bindProject(document.getElementById("swarmites"), {
                 projName: 'TERMINAL SQUAD: SWARMITES', 
                 projDesc: 'Terminal squad: swarmites is a game with indirect control where you must erect a chain of buildings, which generate resources for construction or the combat units for destruction of an enemy.', 
                 projLink: 'https://store.steampowered.com/app/1217330/Terminal_squad_Swarmites/', 
                 projPics: ['swarm1.jpg', 'swarm2.jpg']
             });
 
-            bind_click_to_link("space", {
+            bindProject(document.getElementById("space"), {
                 projName: 'DEEP SPACE SHOOTER', 
                 projDesc: 'The first game of mine which was published on Steam', 
                 projLink: 'https://store.steampowered.com/app/972280/Deep_Space_Shooter/', 
                 projPics: ['space1.jpg', 'space2.jpg']
             });
 
-            bind_click_to_link("mania", {
+            bindProject(document.getElementById("mania"), {
                 projName: 'RHYTHM MANIA: MUSIC GAME', 
                 projDesc: 'A rhythm game for anroid with 10 000+ installs and online highscore tables', 
                 projLink: 'https://play.google.com/store/apps/details?id=com.fataliti.rhythm&hl=ru&gl=US', 
                 projPics: ['maniagif.gif']
             });
 
-            bind_click_to_link("direct", {
+            bindProject(document.getElementById("direct"), {
                 projName: 'FATALNY DIRECT', 
                 projDesc: 'Standalone osu! beatmap downloader with Tillerino and PPaddict integration', 
                 projLink: 'https://fataliti.itch.io/fatalny-direct', 
                 projPics: ['direct.jpg']
             });
 
-            bind_click_to_link("katana", {
+            bindProject(document.getElementById("katana"), {
                 projName: 'KATANA REVERS', 
                 projDesc: 'A small game for a gamejam with time manipulations', 
                 projLink: 'https://fataliti.itch.io/katana-revers', 
                 projPics: ['katana.gif']
             });
 
-            bind_click_to_link("kobeni", {
+            bindProject(document.getElementById("kobeni"), {
                 projName: 'CHAINSAW DANCE', 
                 projDesc: 'A small rhythm fan game about dancing Kobeni', 
                 projLink: 'https://benedique.itch.io/chainsaw-dance', 
                 projPics: ['kobeni1.gif', 'kobeni2.gif']
             });
 
-            bind_click_to_link("gunvein", {
+            bindProject(document.getElementById("gunvein"), {
                 projName: 'GUNVEIN', 
                 projDesc: 'Bullethell shoot em up game', 
                 projLink: 'https://store.steampowered.com/app/2025840/Gunvein/',
                 projPics: ['gunvein1.gif','gunvein2.gif']
             });
 
-            bind_click_to_link("lucido", {
+            bindProject(document.getElementById("lucido"), {
                 projName: 'LUCIDO CANCELS EVERYTHING', 
                 projDesc: 'Psychedelic Beat \'Em Up', 
                 projLink: 'https://store.steampowered.com/app/2898730/LUCIDO_Cancels_Everything/',
                 projPics: ['lucido_guf_2.webp']
             });
 
-            bind_click_to_link("norland", {
+            var norland = document.getElementById("norland");
+            bindProject(norland, {
                 projName: 'NORLAND', 
                 projDesc: 'Norland is a medieval kingdom sim inspired by Rimworld, Crusader Kings, and Caesar that generates complex stories.', 
                 projLink: 'https://store.steampowered.com/app/1857090/Norland/',
                 projPics: ['norland.gif']
             });
 
-            bind_click_to_link("rgd", {
+            bindProject(document.getElementById("rgd"), {
                 projName: 'RGD Bar', 
                 projDesc: 'Small bar for you and your friends', 
                 projLink: 'https://fataliti.itch.io/rgd-bar', 
@@ -158,27 +143,11 @@ class Main {
             });
 
 
-            document.getElementById('norland').onclick();
+            norland.click();
 
-            document.getElementById("extend").onclick = () -> {
-                var otherProjDiv = document.getElementById("otherproj");
-            
-                var addSideProject = (p:AnotherProject) -> {
-                    var div = document.createElement('div');
-                    div.className = 'column';
-                    var a = document.createElement('a');
-                    a.className = 'proj';
-                    a.id = "id_" + p.projName;
-
-                    div.appendChild(a);
-                    var img = document.createImageElement();
-                    img.className = 'projico';
-                    img.src = p.projIco;
-                    a.appendChild(img);
-
-                    otherProjDiv.appendChild(div);
-                    bind_click_to_link(a.id, p);
-                }
+            var extendButton = document.getElementById('extend');
+            extendButton.onclick = () -> {
+                var otherProjDiv = document.getElementById('otherproj');
 
                 var sideprojects:Array<AnotherProject> = [
                     {
@@ -238,15 +207,30 @@ class Main {
 
                 ];
 
-                if (is_extended) {
-                    return;
+                for (project in sideprojects) {
+                    var column = document.createElement('div');
+                    column.className = 'column';
+
+                    var button = document.createButtonElement();
+                    button.type = 'button';
+                    button.className = 'proj';
+                    button.id = 'id_' + project.projName;
+                    bindProject(button, project);
+
+                    var img = document.createImageElement();
+                    img.className = 'projico';
+                    img.alt = project.projName;
+                    img.src = project.projIco;
+                    button.appendChild(img);
+                    column.appendChild(button);
+                    otherProjDiv.appendChild(column);
                 }
 
-                for (s in sideprojects) {
-                    addSideProject(s);
-                }
-
-                is_extended = true;
+                extendButton.onclick = null;
+                extendButton.setAttribute('aria-expanded', 'true');
+                otherProjDiv.removeAttribute('hidden');
+                otherProjDiv.querySelector('button').focus();
+                extendButton.setAttribute('hidden', '');
             }
 
         }

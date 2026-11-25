@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Fataliti // Reifshneider</title>
         <meta name="description" content="Fataliti's profile card">
         <meta name="author" content="Fataliti // Reifshneider">
@@ -18,7 +19,6 @@
         <style>
 
             .column {
-                float: left;
                 padding: 5px;
             }
 
@@ -26,6 +26,11 @@
                 align-items: center;
                 justify-content: center;
                 display: flex;
+                flex-wrap: wrap;
+            }
+
+            .tab[hidden] {
+                display: none;
             }
 
             .imglink {
@@ -48,30 +53,148 @@
                 font-size: 32px;
             }
 
+            .profile-title {
+                font-size: clamp(26px, 9vw, 32px);
+            }
+
+            .works-title {
+                text-align: center;
+                font-size: 20px;
+                margin: 0.67em 0;
+            }
+
+            .worklist-spacer, .worklist-mascot {
+                width: 30px;
+            }
+
+            .proj, .extend-button {
+                border: 0;
+                background: none;
+                color: inherit;
+                font: inherit;
+                cursor: pointer;
+            }
+
+            .proj {
+                padding: 0;
+                border-radius: 50%;
+            }
+
+            .proj:focus-visible, .extend-button:focus-visible {
+                outline: 2px solid #1967a3;
+                outline-offset: 3px;
+            }
+
             .projico {
+                display: block;
                 border-radius: 50%;
                 filter: grayscale(1);
                 width: 48px;
             }
 
-            .projicoact {
-                border-radius: 50%;
-                width: 48px;
-                cursor: pointer;
+            .proj:focus-visible .projico, .proj[aria-pressed="true"] .projico {
+                filter: none;
             }
 
-            .projico_selected {
-                border-radius: 50%;
+            @media (hover: hover) {
+                .proj:hover .projico {
+                    filter: none;
+                }
+            }
+
+            .proj[aria-pressed="true"] .projico {
                 width: 64px;
-                cursor: pointer;
+            }
+
+            .extend-row {
+                text-align: center;
+            }
+
+            .extend-button {
+                min-height: 44px;
+                padding: 0 8px;
+                text-decoration: underline;
+            }
+
+            .project-title, .project-copy {
+                text-align: center;
+                font-size: 20px;
+                overflow-wrap: anywhere;
+            }
+
+            .project-title {
+                margin: 5px 0 1.33em;
+            }
+
+            .project-title a {
+                color: #000;
+            }
+
+            .project-copy {
+                max-width: 500px;
+                margin: -25px auto 0;
+                font-weight: 600;
+            }
+
+            .project-screens {
+                flex-wrap: nowrap;
             }
 
             .screens {
+                box-sizing: border-box;
                 padding: 5px;
-                width: 500px;
+                width: 510px;
+                min-width: 0;
+                max-width: 100%;
                 border-radius: 10px;
             }
-       
+
+            @media (min-width: 1320px) {
+                .extend-row {
+                    position: fixed;
+                    right: 1%;
+                    bottom: 1%;
+                }
+            }
+
+            @media (max-width: 740px) {
+                .project-list .column {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 59px;
+                    min-height: 62px;
+                    padding: 0;
+                }
+
+                .proj[aria-pressed="true"] .projico {
+                    width: 56px;
+                }
+
+                .worklist-spacer {
+                    display: none;
+                }
+            }
+
+            @media (max-width: 640px) {
+                .project-screens {
+                    flex-wrap: wrap;
+                }
+            }
+
+            @media (max-width: 415px) {
+                .contact-list {
+                    max-width: 250px;
+                    margin-inline: auto;
+                }
+            }
+
+            @media (max-width: 369px) {
+                .project-list .column {
+                    width: 72px;
+                }
+            }
+
         </style>
         <script src="app.js"></script>
         <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -91,7 +214,7 @@
                     <div style="display: flex;">
                         <img src="pic.png" alt="avatar image" style=" border-radius: 50%; border: solid 3px; margin: auto; width: 150px;">
                     </div>
-                    <h1 style="text-align: center;  line-height: 30px; margin-top: 12px;" class="name"> 
+                    <h1 style="text-align: center;  line-height: 30px; margin-top: 12px;" class="name profile-title">
                         Fataliti // Reifshneider <br> <span style="font-size: 20px;">GAME DEVELOPER</span> 
                     </h1>
 
@@ -99,129 +222,122 @@
                         <b> CONTACTS</b>
                     </p>
                     
-                    <div class = "tab" style="margin-top: -20px">
+                    <div class="tab contact-list" style="margin-top: -20px">
                         <div class = "column">
                             <a href="https://www.youtube.com/channel/UCx7EIpc_WwrzznI1QSEnY1A" target="_blank">
-                                <img src="yt.svg" alt="" class="imglink" id = "tst">
+                                <img src="yt.svg" alt="YouTube" class="imglink">
                             </a>
                         </div>
                         <div class = "column">
                             <a href="https://fataliti.itch.io/" target="_blank">
-                                <img src="itch.svg" alt="" class="imglink" id = "tst">
+                                <img src="itch.svg" alt="itch.io" class="imglink">
                             </a>
                         </div>
                         <div class = "column">
                             <a href="https://github.com/fataliti" target="_blank">
-                                <img src="git.svg" alt="" class="imglink" >
+                                <img src="git.svg" alt="GitHub" class="imglink">
                             </a>
                         </div>
 
                         <div class = "column">
                             <a href="mailto:fataliti22@gmail.com" target="_blank">
-                                <img src="mail.svg" alt="" class="imglink"">
+                                <img src="mail.svg" alt="Email" class="imglink">
                             </a>
                         </div>
 
                         <div class = "column">
                             <a href="https://discord.gg/YAxn2BVt8K" target="_blank">
-                                <img src="discord.svg" alt="" class="imglink" id = "tst" style="width: 40px;">
+                                <img src="discord.svg" alt="Discord" class="imglink" style="width: 40px;">
                             </a>
                         </div>
                         <div class = "column">
                             <a href="https://vk.com/fatal_gd" target="_blank">
-                                <img src="vk.svg" alt="" class="imglink">
+                                <img src="vk.svg" alt="VK" class="imglink">
                             </a>
                         </div>
 
                         <div class = "column">
                             <a href="https://t.me/reifshneider" target="_blank">
-                                <img src="telegram.svg" alt="" class="imglink" style="width: 40px;"">
+                                <img src="telegram.svg" alt="Telegram" class="imglink" style="width: 40px;">
                             </a>
                         </div>
                     </div> 
                 </div>
 
-                <h1 style="text-align: center; font-size: 20px;" class="name">
+                <h2 class="name works-title">
                     MY WORKS
-                </h1>
+                </h2>
                 
-                <div class="tab" id="worklist" style="margin-top: -10px;">
+                <div class="tab project-list" id="worklist" style="margin-top: -10px;">
 
-                    <div>
-                        <img src="monophy.gif" alt="" style="width: 30px; visibility:hidden;">
+                    <div class="worklist-spacer" aria-hidden="true"></div>
+                    <div class="column">
+                        <button type="button" class="proj" id="direct">
+                            <img src="dirico.png" alt="Fatalny Direct" class="projico">
+                        </button>
                     </div>
                     <div class="column">
-                        <a  class = "proj" id="direct">
-                            <img src="dirico.png" alt="fatalny direct" class="projico" >
-                        </a>
+                        <button type="button" class="proj" id="sentinel">
+                            <img src="tss.jpg" alt="Terminal Squad: Sentinel" class="projico">
+                        </button>
                     </div>
                     <div class="column">
-                        <a  class = "proj" id="sentinel">
-                            <img src="tss.jpg" alt="terminal squad sentinel" class="projico" >
-                        </a>
+                        <button type="button" class="proj" id="swarmites">
+                            <img src="tsss.jpg" alt="Terminal Squad: Swarmites" class="projico">
+                        </button>
                     </div>
                     <div class="column">
-                        <a   class = "proj" id="swarmites">
-                            <img src="tsss.jpg" alt="terminal squad swarmites" class="projico" >
-                        </a>
+                        <button type="button" class="proj" id="kobeni">
+                            <img src="kobeniface.png" alt="Chainsaw Dance" class="projico">
+                        </button>
                     </div>
                     <div class="column">
-                        <a  class = "proj" id="kobeni">
-                            <img src="kobeniface.png" alt="chainsaw dance" class="projico" >
-                        </a>
+                        <button type="button" class="proj" id="lucido">
+                            <img src="lucido.webp" alt="Lucido Cancels Everything" class="projico">
+                        </button>
                     </div>
                     <div class="column">
-                        <a  class = "proj" id="lucido">
-                            <img src="lucido.webp" alt="lucido" class="projico" >
-                        </a>
+                        <button type="button" class="proj" id="norland">
+                            <img src="norland.webp" alt="Norland" class="projico">
+                        </button>
                     </div>
                     <div class="column">
-                        <a  class = "proj" id="norland">
-                            <img src="norland.webp" alt="norland" class="projico" >
-                        </a>
+                        <button type="button" class="proj" id="gunvein">
+                            <img src="riko.png" alt="Gunvein" class="projico">
+                        </button>
                     </div>
                     <div class="column">
-                        <a  class = "proj" id="gunvein">
-                            <img src="riko.png" alt="gunvein" class="projico" >
-                        </a>
+                        <button type="button" class="proj" id="mania">
+                            <img src="mania.webp" alt="Rhythm Mania: Music Game" class="projico">
+                        </button>
                     </div>
                     <div class="column">
-                        <a  class = "proj" id="mania">
-                            <img src="mania.webp" alt="rhythm mania" class="projico" >
-                        </a>
+                        <button type="button" class="proj" id="katana">
+                            <img src="katana.jpg" alt="Katana Revers" class="projico">
+                        </button>
                     </div>
                     <div class="column">
-                        <a  class = "proj" id="katana">
-                            <img src="katana.jpg" alt="katana reverse" class="projico" >
-                        </a>
-                    </div>
-                    <div class="column">
-                        <a  class = "proj" id="space">
-                            <img src="dss.jpg" alt="deep space shooter" class="projico" >
-                        </a>
+                        <button type="button" class="proj" id="space">
+                            <img src="dss.jpg" alt="Deep Space Shooter" class="projico">
+                        </button>
                     </div>
                     
                     <div class="column">
-                        <a  class = "proj" id="rgd">
-                            <img src="src/img/rgdbar.png" alt="rgd bar" class="projico" >
-                        </a>
+                        <button type="button" class="proj" id="rgd">
+                            <img src="src/img/rgdbar.png" alt="RGD Bar" class="projico">
+                        </button>
                     </div>
 
-                    <div>
-                        <img src="monophy.gif" alt="" style="width: 30px;">
-                    </div>
+                    <img src="monophy.gif" alt="" class="worklist-mascot">
                 </div>
-                <div id="otherproj" class="tab"></div> 
-                <div id="description"></div> 
+                <div class="extend-row">
+                    <button type="button" id="extend" class="extend-button" aria-controls="otherproj" aria-expanded="false">
+                        extend works list
+                    </button>
+                </div>
+                <div id="otherproj" class="tab project-list" hidden></div>
+                <div id="description" aria-live="polite"></div>
             </div>
-        </div>
-
-        <div style="position: fixed; right: 1%; bottom: 1%;">
-            <a >
-                <p style="text-align: right; text-decoration: underline; cursor: pointer"  id="extend">
-                    extend works list
-                </p>
-            </a>
         </div>
 
     </body>
