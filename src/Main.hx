@@ -11,6 +11,7 @@ class Main {
         window.onload = function() {
             var divDesc = document.getElementById('description');
             var selectedProject:Element = null;
+            var selectBySlug:Map<String, Void -> Void> = [];
 
             var showProject = (project:AnotherProject) -> {
                 if (divDesc.firstElementChild != null) {
@@ -49,11 +50,12 @@ class Main {
                 divDesc.appendChild(rootDiv);
             };
 
-            var bindProject = (button:Element, project:AnotherProject) -> {
+            var bindProject = (button:Element, project:AnotherProject, ?fragment:String) -> {
+                var slug = fragment != null ? fragment : button.id;
                 button.setAttribute('aria-controls', 'description');
                 button.setAttribute('aria-pressed', 'false');
 
-                button.onclick = () -> {
+                var select = () -> {
                     if (button == selectedProject) {
                         return;
                     }
@@ -63,6 +65,15 @@ class Main {
                     selectedProject = button;
                     button.setAttribute('aria-pressed', 'true');
                     showProject(project);
+                };
+                selectBySlug.set(slug, select);
+
+                button.onclick = () -> {
+                    select();
+                    var hash = '#' + slug;
+                    if (window.location.hash != hash) {
+                        window.history.pushState(null, '', hash);
+                    }
                 };
             };
 
@@ -129,8 +140,7 @@ class Main {
                 projPics: [PROJECT_PREVIEWS + 'lucido_guf_2.webp']
             });
 
-            var norland = document.getElementById("norland");
-            bindProject(norland, {
+            bindProject(document.getElementById("norland"), {
                 projName: 'NORLAND', 
                 projDesc: 'A medieval kingdom sim inspired by RimWorld, Crusader Kings, and Caesar. Complex stories emerge as you play.',
                 projLink: 'https://store.steampowered.com/app/1857090/Norland/',
@@ -145,71 +155,80 @@ class Main {
             });
 
 
-            norland.click();
+            var sideProjects:Array<SideProject> = [
+                {
+                    projSlug: 'castoff',
+                    projIco: PROJECT_ICONS + 'castoff.png',
+                    projName: 'CASTOFF',
+                    projDesc: 'A small game jam entry about mages.',
+                    projLink: 'https://fataliti.itch.io/cast-off',
+                    projPics: [PROJECT_PREVIEWS + 'castoff2.webp']
+                },
+                {
+                    projSlug: 'rgd-bot',
+                    projIco: PROJECT_ICONS + 'rgdbot.webp',
+                    projName: 'RGD BOT',
+                    projDesc: 'A Discord bot for the Russian Gamedev Server, built in Haxe.',
+                    projLink: 'https://github.com/fataliti/RgdBot',
+                },
+                {
+                    projSlug: 'podsos-bot',
+                    projIco: PROJECT_ICONS + 'podsosbot.webp',
+                    projName: 'PODSOS BOT',
+                    projDesc: 'A Discord bot built in Haxe. It supports multiple servers and posts images from several booru sites.',
+                    projLink: 'https://github.com/fataliti/Fatalny-podsos',
+                },
+                {
+                    projSlug: 'gmedit-discord-rpc',
+                    projIco: PROJECT_ICONS + 'gmedit.png',
+                    projName: 'GMEDIT DISCORD RPC PLUGIN',
+                    projDesc: 'A GMEdit plugin that shows your editor activity on Discord.',
+                    projLink: 'https://github.com/fataliti/GMEdit-Discord-RPC',
+                    projPics: [PROJECT_PREVIEWS + 'demo.png']
+                },
+                {
+                    projSlug: 'gm-video',
+                    projIco: PROJECT_ICONS + 'GMV.png',
+                    projName: 'GM VIDEO',
+                    projDesc: 'A GameMaker Studio 2 extension for playing videos.',
+                    projLink: 'https://fataliti.itch.io/gmvideo',
+                    projPics: [PROJECT_PREVIEWS + 'video.png']
+                },
+                {
+                    projSlug: 'shader-bruh',
+                    projIco: PROJECT_ICONS + 'ShB.png',
+                    projName: 'SHADER BRUH',
+                    projDesc: 'A visual, node-based shader editor for GameMaker Studio 2.',
+                    projLink: 'https://fataliti.itch.io/shaderbruh',
+                    projPics: [PROJECT_PREVIEWS + 'shader.png']
+                },
+                {
+                    projSlug: 'orcs-fate',
+                    projIco: PROJECT_ICONS + 'orcico.png',
+                    projName: 'ORCS\'S FATE',
+                    projDesc: 'A Russian-language visual novel about an orc. It was one of my first games.',
+                    projLink: 'https://fataliti.pro/orc/orc.html',
+                    projPics: [PROJECT_PREVIEWS + 'orcimg.png']
+                },
+                {
+                    projSlug: 'evo',
+                    projIco: PROJECT_ICONS + 'evoico.png',
+                    projName: 'EVO',
+                    projDesc: 'A game jam entry about evolution.',
+                    projLink: 'https://fataliti.pro/evo/evonext.html',
+                    projPics: [PROJECT_PREVIEWS + 'evogif.webp']
+                },
+            ];
 
             var extendButton = document.getElementById('extend');
-            extendButton.onclick = () -> {
-                var otherProjDiv = document.getElementById('otherproj');
+            var otherProjDiv = document.getElementById('otherproj');
 
-                var sideprojects:Array<AnotherProject> = [
-                    {
-                        projIco: PROJECT_ICONS + 'castoff.png', 
-                        projName: 'CASTOFF', 
-                        projDesc: 'A small game jam entry about mages.',
-                        projLink: 'https://fataliti.itch.io/cast-off', 
-                        projPics: [PROJECT_PREVIEWS + 'castoff2.webp']
-                    },
-                    {
-                        projIco: PROJECT_ICONS + 'rgdbot.webp',
-                        projName: 'RGD BOT',
-                        projDesc: 'A Discord bot for the Russian Gamedev Server, built in Haxe.',
-                        projLink: 'https://github.com/fataliti/RgdBot',
-                    }, 
-                    {
-                        projIco: PROJECT_ICONS + 'podsosbot.webp',
-                        projName: 'PODSOS BOT',
-                        projDesc: 'A Discord bot built in Haxe. It supports multiple servers and posts images from several booru sites.',
-                        projLink: 'https://github.com/fataliti/Fatalny-podsos',
-                    },
-                    {
-                        projIco: PROJECT_ICONS + 'gmedit.png',
-                        projName: 'GMEDIT DISCORD RPC PLUGIN',
-                        projDesc: 'A GMEdit plugin that shows your editor activity on Discord.',
-                        projLink: 'https://github.com/fataliti/GMEdit-Discord-RPC',
-                        projPics: [PROJECT_PREVIEWS + 'demo.png']
-                    },
-                    {
-                        projIco: PROJECT_ICONS + 'GMV.png',
-                        projName: 'GM VIDEO',
-                        projDesc: 'A GameMaker Studio 2 extension for playing videos.',
-                        projLink: 'https://fataliti.itch.io/gmvideo',
-                        projPics: [PROJECT_PREVIEWS + 'video.png']
-                    },
-                    {
-                        projIco: PROJECT_ICONS + 'ShB.png',
-                        projName: 'SHADER BRUH',
-                        projDesc: 'A visual, node-based shader editor for GameMaker Studio 2.',
-                        projLink: 'https://fataliti.itch.io/shaderbruh',
-                        projPics: [PROJECT_PREVIEWS + 'shader.png']
-                    },
-                    {
-                        projIco: PROJECT_ICONS + 'orcico.png',
-                        projName: 'ORCS\'S FATE',
-                        projDesc: 'A Russian-language visual novel about an orc. It was one of my first games.',
-                        projLink: 'https://fataliti.pro/orc/orc.html',
-                        projPics: [PROJECT_PREVIEWS + 'orcimg.png']
-                    },
-                    {
-                        projIco: PROJECT_ICONS + 'evoico.png',
-                        projName: 'EVO',
-                        projDesc: 'A game jam entry about evolution.',
-                        projLink: 'https://fataliti.pro/evo/evonext.html',
-                        projPics: [PROJECT_PREVIEWS + 'evogif.webp']
-                    },
+            var expandProjects = (focusFirst:Bool) -> {
+                if (!otherProjDiv.hasAttribute('hidden')) {
+                    return;
+                }
 
-                ];
-
-                for (project in sideprojects) {
+                for (project in sideProjects) {
                     var column = document.createElement('div');
                     column.className = 'column';
 
@@ -217,7 +236,7 @@ class Main {
                     button.type = 'button';
                     button.className = 'proj';
                     button.id = 'id_' + project.projName;
-                    bindProject(button, project);
+                    bindProject(button, project, project.projSlug);
 
                     var img = document.createImageElement();
                     img.className = 'projico';
@@ -228,12 +247,31 @@ class Main {
                     otherProjDiv.appendChild(column);
                 }
 
-                extendButton.onclick = null;
                 extendButton.setAttribute('aria-expanded', 'true');
                 otherProjDiv.removeAttribute('hidden');
-                otherProjDiv.querySelector('button').focus();
+                if (focusFirst) {
+                    otherProjDiv.querySelector('button').focus();
+                }
                 extendButton.setAttribute('hidden', '');
-            }
+            };
+            extendButton.onclick = () -> expandProjects(true);
+
+            var selectFromUrl = () -> {
+                var slug = window.location.hash.substr(1);
+                if (!selectBySlug.exists(slug) && Lambda.exists(sideProjects, project -> project.projSlug == slug)) {
+                    expandProjects(false);
+                }
+
+                var select = selectBySlug.get(slug);
+                if (select == null) {
+                    select = selectBySlug.get('norland');
+                }
+                select();
+            };
+
+            window.addEventListener('hashchange', _ -> selectFromUrl());
+            window.addEventListener('popstate', _ -> selectFromUrl());
+            selectFromUrl();
 
         }
     }
@@ -242,11 +280,16 @@ class Main {
 
 
 typedef AnotherProject = {
-    ?projIco:String,
     projName:String,
     projDesc:String,
     projLink:String,
     ?projPics:Array<String>,
+}
+
+private typedef SideProject = {
+    > AnotherProject,
+    projSlug:String,
+    projIco:String,
 }
 
 
