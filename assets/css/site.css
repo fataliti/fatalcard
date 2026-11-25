@@ -124,6 +124,7 @@
     box-sizing: border-box;
     padding: 5px;
     width: 510px;
+    height: auto;
     min-width: 0;
     max-width: 100%;
     border-radius: 10px;

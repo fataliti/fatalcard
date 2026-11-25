@@ -2,18 +2,48 @@
 import js.Browser.document;
 import js.Browser.window;
 import js.html.Element;
+import js.html.ImageElement;
+import js.html.IntersectionObserver;
+import js.Syntax;
 
 class Main {
     static inline var PROJECT_ICONS = 'assets/images/projects/icons/';
     static inline var PROJECT_PREVIEWS = 'assets/images/projects/previews/';
+
+    static function preview(file:String, width:Int, height:Int):ProjectPreview {
+        return {
+            src: PROJECT_PREVIEWS + file,
+            width: width,
+            height: height
+        };
+    }
 
     static function main() {
         window.onload = function() {
             var divDesc = document.getElementById('description');
             var selectedProject:Element = null;
             var selectBySlug:Map<String, Void -> Void> = [];
+            var previewObserver:IntersectionObserver = null;
+            if (Syntax.code('typeof IntersectionObserver === "function"')) {
+                previewObserver = new IntersectionObserver((entries, observer) -> {
+                    for (entry in entries) {
+                        if (entry.isIntersecting && divDesc.contains(entry.target)) {
+                            var img:ImageElement = cast entry.target;
+                            var src = img.getAttribute('data-src');
+                            if (src != null) {
+                                img.removeAttribute('data-src');
+                                img.src = src;
+                            }
+                            observer.unobserve(img);
+                        }
+                    }
+                });
+            }
 
             var showProject = (project:AnotherProject) -> {
+                if (previewObserver != null) {
+                    previewObserver.disconnect();
+                }
                 if (divDesc.firstElementChild != null) {
                     divDesc.firstElementChild.remove();
                 }
@@ -37,12 +67,21 @@ class Main {
                 if (project.projPics != null) {
                     var screenDiv = document.createElement('div');
                     screenDiv.className = 'tab project-screens';
-                    for (src in project.projPics) {
+                    for (picture in project.projPics) {
                         var img = document.createImageElement();
                         img.className = 'screens';
                         img.alt = '';
-                        img.src = src;
+                        img.width = picture.width;
+                        img.height = picture.height;
+                        img.setAttribute('decoding', 'async');
                         screenDiv.appendChild(img);
+                        if (previewObserver != null) {
+                            img.setAttribute('data-src', picture.src);
+                            previewObserver.observe(img);
+                        } else {
+                            img.setAttribute('loading', 'lazy');
+                            img.src = picture.src;
+                        }
                     }
                     rootDiv.appendChild(screenDiv);
                 }
@@ -81,77 +120,77 @@ class Main {
                 projName: 'TERMINAL SQUAD: SENTINEL', 
                 projDesc: 'A mech combat game that blends match-3 puzzles with wave-based battles. Match tiles to charge your weapons and defenses. Enemies grow stronger and rewards increase as you progress.',
                 projLink: 'https://store.steampowered.com/app/1118050/Terminal_squad_Sentinel/', 
-                projPics: [PROJECT_PREVIEWS + 'sent1.jpg', PROJECT_PREVIEWS + 'sent2.jpg']
+                projPics: [preview('sent1.jpg', 600, 337), preview('sent2.jpg', 600, 337)]
             });
 
             bindProject(document.getElementById("swarmites"), {
                 projName: 'TERMINAL SQUAD: SWARMITES', 
                 projDesc: 'A strategy game with indirect control. Build a chain of structures that generate resources or produce combat units to defeat the enemy.',
                 projLink: 'https://store.steampowered.com/app/1217330/Terminal_squad_Swarmites/', 
-                projPics: [PROJECT_PREVIEWS + 'swarm1.jpg', PROJECT_PREVIEWS + 'swarm2.jpg']
+                projPics: [preview('swarm1.jpg', 600, 337), preview('swarm2.jpg', 600, 337)]
             });
 
             bindProject(document.getElementById("space"), {
                 projName: 'DEEP SPACE SHOOTER', 
                 projDesc: 'My first game to be released on Steam.',
                 projLink: 'https://store.steampowered.com/app/972280/Deep_Space_Shooter/', 
-                projPics: [PROJECT_PREVIEWS + 'space1.jpg', PROJECT_PREVIEWS + 'space2.jpg']
+                projPics: [preview('space1.jpg', 600, 337), preview('space2.jpg', 600, 337)]
             });
 
             bindProject(document.getElementById("mania"), {
                 projName: 'RHYTHM MANIA: MUSIC GAME', 
                 projDesc: 'An Android rhythm game with 10,000+ installs and online leaderboards.',
                 projLink: 'https://play.google.com/store/apps/details?id=com.fataliti.rhythm&hl=ru&gl=US', 
-                projPics: [PROJECT_PREVIEWS + 'maniagif.webp']
+                projPics: [preview('maniagif.webp', 399, 704)]
             });
 
             bindProject(document.getElementById("direct"), {
                 projName: 'FATALNY DIRECT', 
                 projDesc: 'A standalone osu! beatmap downloader with Tillerino and PPaddict integration.',
                 projLink: 'https://fataliti.itch.io/fatalny-direct', 
-                projPics: [PROJECT_PREVIEWS + 'direct.jpg']
+                projPics: [preview('direct.jpg', 1106, 620)]
             });
 
             bindProject(document.getElementById("katana"), {
                 projName: 'KATANA REVERS', 
                 projDesc: 'A small game jam entry about manipulating time.',
                 projLink: 'https://fataliti.itch.io/katana-revers', 
-                projPics: [PROJECT_PREVIEWS + 'katana.webp']
+                projPics: [preview('katana.webp', 691, 415)]
             });
 
             bindProject(document.getElementById("kobeni"), {
                 projName: 'CHAINSAW DANCE', 
                 projDesc: 'A small rhythm fan game where Kobeni dances to the beat.',
                 projLink: 'https://benedique.itch.io/chainsaw-dance', 
-                projPics: [PROJECT_PREVIEWS + 'kobeni1.webp', PROJECT_PREVIEWS + 'kobeni2.webp']
+                projPics: [preview('kobeni1.webp', 955, 530), preview('kobeni2.webp', 640, 355)]
             });
 
             bindProject(document.getElementById("gunvein"), {
                 projName: 'GUNVEIN', 
                 projDesc: 'A bullet hell shoot \'em up.',
                 projLink: 'https://store.steampowered.com/app/2025840/Gunvein/',
-                projPics: [PROJECT_PREVIEWS + 'gunvein1.webp',PROJECT_PREVIEWS + 'gunvein2.webp']
+                projPics: [preview('gunvein1.webp', 424, 240), preview('gunvein2.webp', 424, 240)]
             });
 
             bindProject(document.getElementById("lucido"), {
                 projName: 'LUCIDO CANCELS EVERYTHING', 
                 projDesc: 'A psychedelic beat \'em up.',
                 projLink: 'https://store.steampowered.com/app/2898730/LUCIDO_Cancels_Everything/',
-                projPics: [PROJECT_PREVIEWS + 'lucido_guf_2.webp']
+                projPics: [preview('lucido_guf_2.webp', 680, 307)]
             });
 
             bindProject(document.getElementById("norland"), {
                 projName: 'NORLAND', 
                 projDesc: 'A medieval kingdom sim inspired by RimWorld, Crusader Kings, and Caesar. Complex stories emerge as you play.',
                 projLink: 'https://store.steampowered.com/app/1857090/Norland/',
-                projPics: [PROJECT_PREVIEWS + 'norland.webp']
+                projPics: [preview('norland.webp', 600, 245)]
             });
 
             bindProject(document.getElementById("rgd"), {
                 projName: 'RGD Bar', 
                 projDesc: 'A small bar for you and your friends.',
                 projLink: 'https://fataliti.itch.io/rgd-bar', 
-                projPics: [PROJECT_PREVIEWS + 'bar_1.png', PROJECT_PREVIEWS + 'bar_2.png']
+                projPics: [preview('bar_1.png', 1092, 709), preview('bar_2.png', 1224, 789)]
             });
 
 
@@ -162,7 +201,7 @@ class Main {
                     projName: 'CASTOFF',
                     projDesc: 'A small game jam entry about mages.',
                     projLink: 'https://fataliti.itch.io/cast-off',
-                    projPics: [PROJECT_PREVIEWS + 'castoff2.webp']
+                    projPics: [preview('castoff2.webp', 552, 458)]
                 },
                 {
                     projSlug: 'rgd-bot',
@@ -184,7 +223,7 @@ class Main {
                     projName: 'GMEDIT DISCORD RPC PLUGIN',
                     projDesc: 'A GMEdit plugin that shows your editor activity on Discord.',
                     projLink: 'https://github.com/fataliti/GMEdit-Discord-RPC',
-                    projPics: [PROJECT_PREVIEWS + 'demo.png']
+                    projPics: [preview('demo.png', 264, 285)]
                 },
                 {
                     projSlug: 'gm-video',
@@ -192,7 +231,7 @@ class Main {
                     projName: 'GM VIDEO',
                     projDesc: 'A GameMaker Studio 2 extension for playing videos.',
                     projLink: 'https://fataliti.itch.io/gmvideo',
-                    projPics: [PROJECT_PREVIEWS + 'video.png']
+                    projPics: [preview('video.png', 1275, 752)]
                 },
                 {
                     projSlug: 'shader-bruh',
@@ -200,7 +239,7 @@ class Main {
                     projName: 'SHADER BRUH',
                     projDesc: 'A visual, node-based shader editor for GameMaker Studio 2.',
                     projLink: 'https://fataliti.itch.io/shaderbruh',
-                    projPics: [PROJECT_PREVIEWS + 'shader.png']
+                    projPics: [preview('shader.png', 1410, 858)]
                 },
                 {
                     projSlug: 'orcs-fate',
@@ -208,7 +247,7 @@ class Main {
                     projName: 'ORCS\'S FATE',
                     projDesc: 'A Russian-language visual novel about an orc. It was one of my first games.',
                     projLink: 'https://fataliti.pro/orc/orc.html',
-                    projPics: [PROJECT_PREVIEWS + 'orcimg.png']
+                    projPics: [preview('orcimg.png', 1218, 669)]
                 },
                 {
                     projSlug: 'evo',
@@ -216,7 +255,7 @@ class Main {
                     projName: 'EVO',
                     projDesc: 'A game jam entry about evolution.',
                     projLink: 'https://fataliti.pro/evo/evonext.html',
-                    projPics: [PROJECT_PREVIEWS + 'evogif.webp']
+                    projPics: [preview('evogif.webp', 528, 339)]
                 },
             ];
 
@@ -283,7 +322,13 @@ typedef AnotherProject = {
     projName:String,
     projDesc:String,
     projLink:String,
-    ?projPics:Array<String>,
+    ?projPics:Array<ProjectPreview>,
+}
+
+typedef ProjectPreview = {
+    src:String,
+    width:Int,
+    height:Int,
 }
 
 private typedef SideProject = {
