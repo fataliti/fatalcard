@@ -1,8 +1,10 @@
--js app.js
+-cp src
+-js assets/js/app.js
 -lib hxnodejs
 --main Main
 
 --next
--js rgd.js
+-cp src
+-js assets/js/rgd.js
 -lib hxnodejs
 --main Rgd
