@@ -68,63 +68,63 @@ class Main {
 
             bindProject(document.getElementById("sentinel"), {
                 projName: 'TERMINAL SQUAD: SENTINEL', 
-                projDesc: 'Terminal Squad: Sentinel represents a mixture of different genres, where the player must destroy the waves of enemies as a mech pilot, using the field match3 for charging of assault and protective equipment. The power of enemies and the award for their elimination grow with the progression of levels.', 
+                projDesc: 'A mech combat game that blends match-3 puzzles with wave-based battles. Match tiles to charge your weapons and defenses. Enemies grow stronger and rewards increase as you progress.',
                 projLink: 'https://store.steampowered.com/app/1118050/Terminal_squad_Sentinel/', 
                 projPics: [PROJECT_PREVIEWS + 'sent1.jpg', PROJECT_PREVIEWS + 'sent2.jpg']
             });
 
             bindProject(document.getElementById("swarmites"), {
                 projName: 'TERMINAL SQUAD: SWARMITES', 
-                projDesc: 'Terminal squad: swarmites is a game with indirect control where you must erect a chain of buildings, which generate resources for construction or the combat units for destruction of an enemy.', 
+                projDesc: 'A strategy game with indirect control. Build a chain of structures that generate resources or produce combat units to defeat the enemy.',
                 projLink: 'https://store.steampowered.com/app/1217330/Terminal_squad_Swarmites/', 
                 projPics: [PROJECT_PREVIEWS + 'swarm1.jpg', PROJECT_PREVIEWS + 'swarm2.jpg']
             });
 
             bindProject(document.getElementById("space"), {
                 projName: 'DEEP SPACE SHOOTER', 
-                projDesc: 'The first game of mine which was published on Steam', 
+                projDesc: 'My first game to be released on Steam.',
                 projLink: 'https://store.steampowered.com/app/972280/Deep_Space_Shooter/', 
                 projPics: [PROJECT_PREVIEWS + 'space1.jpg', PROJECT_PREVIEWS + 'space2.jpg']
             });
 
             bindProject(document.getElementById("mania"), {
                 projName: 'RHYTHM MANIA: MUSIC GAME', 
-                projDesc: 'A rhythm game for anroid with 10 000+ installs and online highscore tables', 
+                projDesc: 'An Android rhythm game with 10,000+ installs and online leaderboards.',
                 projLink: 'https://play.google.com/store/apps/details?id=com.fataliti.rhythm&hl=ru&gl=US', 
                 projPics: [PROJECT_PREVIEWS + 'maniagif.webp']
             });
 
             bindProject(document.getElementById("direct"), {
                 projName: 'FATALNY DIRECT', 
-                projDesc: 'Standalone osu! beatmap downloader with Tillerino and PPaddict integration', 
+                projDesc: 'A standalone osu! beatmap downloader with Tillerino and PPaddict integration.',
                 projLink: 'https://fataliti.itch.io/fatalny-direct', 
                 projPics: [PROJECT_PREVIEWS + 'direct.jpg']
             });
 
             bindProject(document.getElementById("katana"), {
                 projName: 'KATANA REVERS', 
-                projDesc: 'A small game for a gamejam with time manipulations', 
+                projDesc: 'A small game jam entry about manipulating time.',
                 projLink: 'https://fataliti.itch.io/katana-revers', 
                 projPics: [PROJECT_PREVIEWS + 'katana.webp']
             });
 
             bindProject(document.getElementById("kobeni"), {
                 projName: 'CHAINSAW DANCE', 
-                projDesc: 'A small rhythm fan game about dancing Kobeni', 
+                projDesc: 'A small rhythm fan game where Kobeni dances to the beat.',
                 projLink: 'https://benedique.itch.io/chainsaw-dance', 
                 projPics: [PROJECT_PREVIEWS + 'kobeni1.webp', PROJECT_PREVIEWS + 'kobeni2.webp']
             });
 
             bindProject(document.getElementById("gunvein"), {
                 projName: 'GUNVEIN', 
-                projDesc: 'Bullethell shoot em up game', 
+                projDesc: 'A bullet hell shoot \'em up.',
                 projLink: 'https://store.steampowered.com/app/2025840/Gunvein/',
                 projPics: [PROJECT_PREVIEWS + 'gunvein1.webp',PROJECT_PREVIEWS + 'gunvein2.webp']
             });
 
             bindProject(document.getElementById("lucido"), {
                 projName: 'LUCIDO CANCELS EVERYTHING', 
-                projDesc: 'Psychedelic Beat \'Em Up', 
+                projDesc: 'A psychedelic beat \'em up.',
                 projLink: 'https://store.steampowered.com/app/2898730/LUCIDO_Cancels_Everything/',
                 projPics: [PROJECT_PREVIEWS + 'lucido_guf_2.webp']
             });
@@ -132,14 +132,14 @@ class Main {
             var norland = document.getElementById("norland");
             bindProject(norland, {
                 projName: 'NORLAND', 
-                projDesc: 'Norland is a medieval kingdom sim inspired by Rimworld, Crusader Kings, and Caesar that generates complex stories.', 
+                projDesc: 'A medieval kingdom sim inspired by RimWorld, Crusader Kings, and Caesar. Complex stories emerge as you play.',
                 projLink: 'https://store.steampowered.com/app/1857090/Norland/',
                 projPics: [PROJECT_PREVIEWS + 'norland.webp']
             });
 
             bindProject(document.getElementById("rgd"), {
                 projName: 'RGD Bar', 
-                projDesc: 'Small bar for you and your friends', 
+                projDesc: 'A small bar for you and your friends.',
                 projLink: 'https://fataliti.itch.io/rgd-bar', 
                 projPics: [PROJECT_PREVIEWS + 'bar_1.png', PROJECT_PREVIEWS + 'bar_2.png']
             });
@@ -155,54 +155,54 @@ class Main {
                     {
                         projIco: PROJECT_ICONS + 'castoff.png', 
                         projName: 'CASTOFF', 
-                        projDesc: 'A small jam games about mages', 
+                        projDesc: 'A small game jam entry about mages.',
                         projLink: 'https://fataliti.itch.io/cast-off', 
                         projPics: [PROJECT_PREVIEWS + 'castoff2.webp']
                     },
                     {
                         projIco: PROJECT_ICONS + 'rgdbot.webp',
                         projName: 'RGD BOT',
-                        projDesc: 'Russian Gamedev Server\'s discord bot made with HAXE',
+                        projDesc: 'A Discord bot for the Russian Gamedev Server, built in Haxe.',
                         projLink: 'https://github.com/fataliti/RgdBot',
                     }, 
                     {
                         projIco: PROJECT_ICONS + 'podsosbot.webp',
                         projName: 'PODSOS BOT',
-                        projDesc: 'Multiserver discord bot which posts pictures from some booru resourses, also made with HAXE',
+                        projDesc: 'A Discord bot built in Haxe. It supports multiple servers and posts images from several booru sites.',
                         projLink: 'https://github.com/fataliti/Fatalny-podsos',
                     },
                     {
                         projIco: PROJECT_ICONS + 'gmedit.png',
                         projName: 'GMEDIT DISCORD RPC PLUGIN',
-                        projDesc: 'The plugin will show your status in Discord',
+                        projDesc: 'A GMEdit plugin that shows your editor activity on Discord.',
                         projLink: 'https://github.com/fataliti/GMEdit-Discord-RPC',
                         projPics: [PROJECT_PREVIEWS + 'demo.png']
                     },
                     {
                         projIco: PROJECT_ICONS + 'GMV.png',
                         projName: 'GM VIDEO',
-                        projDesc: 'An extension for Game Maker Studio 2 which allow to play videos',
+                        projDesc: 'A GameMaker Studio 2 extension for playing videos.',
                         projLink: 'https://fataliti.itch.io/gmvideo',
                         projPics: [PROJECT_PREVIEWS + 'video.png']
                     },
                     {
                         projIco: PROJECT_ICONS + 'ShB.png',
                         projName: 'SHADER BRUH',
-                        projDesc: 'A tool which allow to make shaders for ame Maker Studio 2 with graphic node editor',
+                        projDesc: 'A visual, node-based shader editor for GameMaker Studio 2.',
                         projLink: 'https://fataliti.itch.io/shaderbruh',
                         projPics: [PROJECT_PREVIEWS + 'shader.png']
                     },
                     {
                         projIco: PROJECT_ICONS + 'orcico.png',
                         projName: 'ORCS\'S FATE',
-                        projDesc: 'One of my first games, russian visual novel about orc',
+                        projDesc: 'A Russian-language visual novel about an orc. It was one of my first games.',
                         projLink: 'https://fataliti.pro/orc/orc.html',
                         projPics: [PROJECT_PREVIEWS + 'orcimg.png']
                     },
                     {
                         projIco: PROJECT_ICONS + 'evoico.png',
                         projName: 'EVO',
-                        projDesc: 'Another one jam game about evolution',
+                        projDesc: 'A game jam entry about evolution.',
                         projLink: 'https://fataliti.pro/evo/evonext.html',
                         projPics: [PROJECT_PREVIEWS + 'evogif.webp']
                     },
