@@ -1,3 +1,7 @@
+:root {
+    color-scheme: light dark;
+}
+
 .column {
     padding: 5px;
 }
@@ -107,7 +111,7 @@
 }
 
 .project-title a {
-    color: #000;
+    color: inherit;
 }
 
 .project-copy {
@@ -128,6 +132,21 @@
     min-width: 0;
     max-width: 100%;
     border-radius: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        background-color: #181a1b;
+        color: #f1f1ee;
+    }
+
+    .imglink {
+        filter: invert(1);
+    }
+
+    .proj:focus-visible, .extend-button:focus-visible {
+        outline-color: #83c5ff;
+    }
 }
 
 @media (min-width: 1320px) {
